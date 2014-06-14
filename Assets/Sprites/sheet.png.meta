@@ -42,7 +42,7 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: sheet_0
+    - name: Ship
       rect:
         serializedVersion: 2
         x: 0
@@ -50,9 +50,9 @@ TextureImporter:
         width: 176
         height: 152
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: sheet_1
+    - name: Asteroid
       rect:
         serializedVersion: 2
         x: 240
@@ -60,7 +60,7 @@ TextureImporter:
         width: 260
         height: 258
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
