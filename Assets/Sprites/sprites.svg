@@ -31,18 +31,6 @@
        prop_units="false"
        vertical_pattern="false"
        fuse_tolerance="0" />
-    <filter
-       inkscape:collect="always"
-       id="filter3791"
-       x="-0.24767572"
-       width="1.4953514"
-       y="-0.26658951"
-       height="1.533179">
-      <feGaussianBlur
-         inkscape:collect="always"
-         stdDeviation="0.44227866"
-         id="feGaussianBlur3793" />
-    </filter>
     <mask
        maskUnits="userSpaceOnUse"
        id="mask3809">
@@ -53,6 +41,18 @@
          d="m -878.97323,692.00507 c 0,0.81363 -0.0571,1.47321 -2.14286,1.47321 -2.08573,0 -2.14286,-0.65958 -2.14286,-1.47321 0,-0.81364 0.95939,-2.50845 2.14286,-2.50845 1.18347,0 2.14286,1.69481 2.14286,2.50845 z"
          style="color:#000000;fill:#abf2fc;fill-opacity:0.98823529;fill-rule:evenodd;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
     </mask>
+    <filter
+       inkscape:collect="always"
+       id="filter3808"
+       x="-0.68558698"
+       width="2.371174"
+       y="-0.19200998"
+       height="1.38402">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="0.34080272"
+         id="feGaussianBlur3810" />
+    </filter>
   </defs>
   <sodipodi:namedview
      id="base"
@@ -62,8 +62,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="0"
      inkscape:zoom="5.6"
-     inkscape:cx="-841.62338"
-     inkscape:cy="375.76249"
+     inkscape:cx="-858.58365"
+     inkscape:cy="387.78508"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -336,5 +336,24 @@
        inkscape:export-filename="C:\Users\KHR\Copy\code\MonthlyGames\2014\June\Asteroids\Assets\Sprites\sheet.png"
        inkscape:export-xdpi="626.96002"
        inkscape:export-ydpi="626.96002" />
+    <path
+       style="font-size:medium;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:normal;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;baseline-shift:baseline;color:#000000;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;marker:none;visibility:visible;display:inline;overflow:visible;filter:url(#filter3808);enable-background:accumulate;font-family:Sans;-inkscape-font-specification:Sans"
+       d="m -863.03807,679.34384 c -0.58433,1.02104 -0.28285,3.2148 0.27198,4.10076 0.60843,-0.79026 0.8563,-3.07972 0.27197,-4.10076 -0.12137,-0.21207 -0.42258,-0.21207 -0.54395,0 z"
+       id="path3020"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="acaa"
+       inkscape:export-filename="C:\Users\KHR\Copy\code\MonthlyGames\2014\June\Asteroids\Assets\Sprites\sheet.png"
+       inkscape:export-xdpi="626"
+       inkscape:export-ydpi="626"
+       transform="matrix(2.0713634,0,0,2.0713634,925.84341,-726.7774)" />
+    <path
+       sodipodi:nodetypes="acaa"
+       inkscape:connector-curvature="0"
+       id="path3794"
+       d="m -861.69953,693.42136 c -0.95415,1.66724 -0.46185,5.24944 0.44412,6.69614 0.99351,-1.29042 1.39826,-5.0289 0.4441,-6.69614 -0.19823,-0.34629 -0.69003,-0.34629 -0.88822,0 z"
+       style="font-size:medium;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:normal;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;baseline-shift:baseline;color:#000000;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Sans;-inkscape-font-specification:Sans"
+       inkscape:export-filename="C:\Users\KHR\Copy\code\MonthlyGames\2014\June\Asteroids\Assets\Sprites\sheet.png"
+       inkscape:export-xdpi="626"
+       inkscape:export-ydpi="626" />
   </g>
 </svg>
