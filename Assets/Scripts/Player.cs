@@ -1,22 +1,29 @@
 ﻿using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Wrapper))]
 public class Player : MonoBehaviour {
-
-    private Rigidbody2D rb;
+    
     public float thrusterForce = 300;
     public float turnSpeed = 7.5f;
 
+    private Rigidbody2D rb;
+    private Wrapper wrapper;
+
     void Awake() {
         rb = GetComponent<Rigidbody2D>();
+        wrapper = GetComponent<Wrapper>();
     }
 
-	void Start () {
-	
-	}
-	
-	void Update () {
+    void Update () {
 	    var turn = Input.GetAxis( "Horizontal" ) * turnSpeed * -1;
-        transform.Rotate( new Vector3(0,0,turn) );
+        foreach( var ghost in wrapper.Ghosts ) {
+            ghost.transform.Rotate( new Vector3(0,0,turn) );
+        }
 	}
+
+    void FixedUpdate() {
+        var throttle = Input.GetAxis("Vertical") * thrusterForce;
+        rb.AddRelativeForce(wrapper.Ghosts[0].transform.up * throttle);
+    }
 }
