@@ -3,20 +3,38 @@ using System.Collections.ObjectModel;
 using UnityEngine;
 
 [RequireComponent(typeof(Wrapper))]
+[RequireComponent(typeof(Rigidbody2D))]
 public class AsteroidMovement : MonoBehaviour {
 
     public float maxRandomRotationSpeed;
     public float rotationSpeed;
+
+    public float maxMoveSpeed = 5;
+
     private ReadOnlyCollection<Transform> ghosts;
 
-    void OnEnable() {
+    void Awake() {
         ghosts = GetComponent<Wrapper>().Ghosts;
-        rotationSpeed = Random.value * maxRandomRotationSpeed - maxRandomRotationSpeed / 2;
-        StartCoroutine( rotationRoutine() );
+    }
+
+    void OnEnable() {
+        rigidbody2D.velocity = GetRandomVelocity();
+        StartRotation();
     }
 
     void OnDisable() {
         StopCoroutine( rotationRoutine() );
+    }
+
+    Vector2 GetRandomVelocity() {
+        var dir = Random.insideUnitCircle;
+        var moveSpeed = Random.value * maxMoveSpeed * 2 - maxMoveSpeed;
+        return dir * moveSpeed;
+    }
+
+    void StartRotation() {
+        rotationSpeed = Random.value * maxRandomRotationSpeed * 2 - maxRandomRotationSpeed;
+        StartCoroutine(rotationRoutine());
     }
 
     IEnumerator rotationRoutine() {

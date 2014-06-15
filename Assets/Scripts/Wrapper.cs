@@ -4,7 +4,18 @@ using UnityEngine;
 
 public class Wrapper : MonoBehaviour {
 
-    public Transform prefab;
+    public Vector2 initialScale = Vector2.one;
+
+    public Vector2 ghostScale {
+        get { return _ghosts[0].localScale; }
+        set {
+            foreach( var ghost in _ghosts ) {
+                ghost.localScale = value;
+            }
+        }
+    }
+
+    public Transform ghostPrefab;
 
     private List<Transform> _ghosts;
     public ReadOnlyCollection<Transform> Ghosts {
@@ -14,69 +25,67 @@ public class Wrapper : MonoBehaviour {
     private float width, height;
 
     void Awake() {
-        prefab.CreatePool();
         _ghosts = new List<Transform>(9);
-    }
 
-	void Start () {
 	    var cam = Camera.main;
 	    height = cam.orthographicSize * 2;
 	    width = height * cam.aspect;
 
-	    var ghost = prefab.Spawn();
+	    var ghost = ghostPrefab.Spawn();
 	    ghost.transform.parent = transform;
 	    ghost.transform.name = "TopLeft";
-	    ghost.transform.position = new Vector3( -width, height );
+	    ghost.transform.localPosition = new Vector3( -width, height );
         _ghosts.Add( ghost );
 
-        ghost = prefab.Spawn();
+        ghost = ghostPrefab.Spawn();
         ghost.transform.parent = transform;
 	    ghost.transform.name = "TopMid";
-	    ghost.transform.position = new Vector3( 0, height );
+	    ghost.transform.localPosition = new Vector3( 0, height );
         _ghosts.Add(ghost);
 
-        ghost = prefab.Spawn();
+        ghost = ghostPrefab.Spawn();
         ghost.transform.parent = transform;
 	    ghost.transform.name = "TopRight";
-	    ghost.transform.position = new Vector3( width, height );
+	    ghost.transform.localPosition = new Vector3( width, height );
         _ghosts.Add(ghost);
 
-        ghost = prefab.Spawn();
+        ghost = ghostPrefab.Spawn();
         ghost.transform.parent = transform;
 	    ghost.transform.name = "MidLeft";
-	    ghost.transform.position = new Vector3( -width, 0 );
+	    ghost.transform.localPosition = new Vector3( -width, 0 );
         _ghosts.Add(ghost);
 
-        ghost = prefab.Spawn();
+        ghost = ghostPrefab.Spawn();
         ghost.transform.parent = transform;
 	    ghost.transform.name = "MidMid";
-	    ghost.transform.position = new Vector3( 0, 0 );
+	    ghost.transform.localPosition = new Vector3( 0, 0 );
         _ghosts.Add(ghost);
 
-        ghost = prefab.Spawn();
+        ghost = ghostPrefab.Spawn();
         ghost.transform.parent = transform;
 	    ghost.transform.name = "MidRight";
-	    ghost.transform.position = new Vector3( width, 0 );
+	    ghost.transform.localPosition = new Vector3( width, 0 );
         _ghosts.Add(ghost);
 
-        ghost = prefab.Spawn();
+        ghost = ghostPrefab.Spawn();
         ghost.transform.parent = transform;
 	    ghost.transform.name = "BotLeft";
-	    ghost.transform.position = new Vector3( -width, -height );
+	    ghost.transform.localPosition = new Vector3( -width, -height );
         _ghosts.Add(ghost);
 
-        ghost = prefab.Spawn();
+        ghost = ghostPrefab.Spawn();
         ghost.transform.parent = transform;
 	    ghost.transform.name = "BotMid";
-	    ghost.transform.position = new Vector3( 0, -height );
+	    ghost.transform.localPosition = new Vector3( 0, -height );
         _ghosts.Add(ghost);
 
-        ghost = prefab.Spawn();
+        ghost = ghostPrefab.Spawn();
         ghost.transform.parent = transform;
         ghost.transform.name = "BotRight";
-        ghost.transform.position = new Vector3(width, -height);
+        ghost.transform.localPosition = new Vector3(width, -height);
         _ghosts.Add(ghost);
 
+        ghostScale = initialScale;
     }
 
     void Update() {

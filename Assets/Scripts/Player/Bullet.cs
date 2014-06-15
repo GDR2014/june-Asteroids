@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Bullet : MonoBehaviour {
@@ -30,9 +31,12 @@ public class Bullet : MonoBehaviour {
 
     void OnCollisionEnter2D( Collision2D collision ) {
         var other = collision.gameObject;
-        if( other.tag == "Player" ) return;
-        this.Recycle();
-        Debug.Log( "Bullet hit: " + other );
+        StartCoroutine( Remove() );
     }
 
+    // Fix to trigger OnCollisionEnter2D for other objects colliding with the bullet
+    IEnumerator Remove() {
+        yield return new WaitForEndOfFrame();
+        this.Recycle();
+    }
 }

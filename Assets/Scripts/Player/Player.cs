@@ -10,7 +10,7 @@ public class Player : MonoBehaviour {
     private Rigidbody2D rb;
     private Wrapper wrapper;
 
-    void Awake() {
+    void Start() {
         rb = GetComponent<Rigidbody2D>();
         wrapper = GetComponent<Wrapper>();
     }
