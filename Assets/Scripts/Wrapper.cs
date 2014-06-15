@@ -25,6 +25,7 @@ public class Wrapper : MonoBehaviour {
     private float width, height;
 
     void Awake() {
+        ghostPrefab.CreatePool();
         _ghosts = new List<Transform>(9);
 
 	    var cam = Camera.main;

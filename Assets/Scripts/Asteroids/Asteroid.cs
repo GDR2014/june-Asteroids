@@ -3,8 +3,6 @@
 [RequireComponent(typeof(Wrapper))]
 public class Asteroid : MonoBehaviour {
 
-    public Asteroid vanillaPrefab;
-
     public int health = 5;
     public int remainingSplits = 2;
 
@@ -29,7 +27,7 @@ public class Asteroid : MonoBehaviour {
 
     void Split() {
         var pos = transform.position;
-        var fragments = new[] {vanillaPrefab.Spawn( pos ), vanillaPrefab.Spawn( pos )};
+        var fragments = new[] { PrefabManager.Instance.Asteroid.Spawn(pos), PrefabManager.Instance.Asteroid.Spawn(pos) };
         foreach( var fragment in fragments ) {
             fragment.scale = scale / fragments.Length;
             fragment.remainingSplits = remainingSplits - 1;
@@ -43,10 +41,13 @@ public class Asteroid : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D collision) {
         var other = collision.gameObject;
-        Debug.Log("Asteroid collided with " + other + ". Layer = " + other.layer  );
         // If not a collision with player bullets, return
         if( other.layer != 9 ) return;
         // Else
+        var colliders = GetComponentsInChildren<Collider2D>();
+        foreach( var col in colliders ) {
+            col.enabled = false;
+        }
         Hurt();
         if( health <= 0 ) Die();
     }
