@@ -6,15 +6,23 @@ public class Asteroid : MonoBehaviour {
     public int health = 5;
     public int remainingSplits = 2;
 
+    public float baseMass = 10f;
+
     public Vector2 scale {
         get { return wrapper.ghostScale; }
         set { wrapper.ghostScale = value; }
     }
 
     private Wrapper wrapper;
+    private Rigidbody2D rb;
 
     void Awake() {
         wrapper = GetComponent<Wrapper>();
+        rb = GetComponent<Rigidbody2D>();
+    }
+
+    void FixedUpdate() {
+        rb.mass = baseMass * scale.magnitude * scale.magnitude;
     }
 
     void Hurt() {
@@ -37,13 +45,7 @@ public class Asteroid : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D collision) {
         var other = collision.gameObject;
-        // If not a collision with player bullets, return
-        if( other.layer != 9 ) return;
-        // Else
-        //var colliders = GetComponentsInChildren<Collider2D>();
-        //foreach( var col in colliders ) {
-        //    col.enabled = false;
-        //}
+        if( other.layer != 9 ) return; // Layer 9 is player bullets
         Hurt();
         if( health <= 0 ) Die();
     }
