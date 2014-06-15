@@ -24,6 +24,7 @@ public class Player : MonoBehaviour {
 
     void FixedUpdate() {
         var throttle = Input.GetAxis("Vertical") * thrusterForce;
+        if( throttle < 0 ) throttle = 0; // Can't move backwards
         rb.AddRelativeForce(wrapper.Ghosts[0].transform.up * throttle);
     }
 }

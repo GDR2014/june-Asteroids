@@ -17,10 +17,6 @@ public class Asteroid : MonoBehaviour {
         wrapper = GetComponent<Wrapper>();
     }
 
-    void Start() {
-        
-    }
-
     void Hurt() {
         health -= 1;
     }
@@ -44,10 +40,10 @@ public class Asteroid : MonoBehaviour {
         // If not a collision with player bullets, return
         if( other.layer != 9 ) return;
         // Else
-        var colliders = GetComponentsInChildren<Collider2D>();
-        foreach( var col in colliders ) {
-            col.enabled = false;
-        }
+        //var colliders = GetComponentsInChildren<Collider2D>();
+        //foreach( var col in colliders ) {
+        //    col.enabled = false;
+        //}
         Hurt();
         if( health <= 0 ) Die();
     }
