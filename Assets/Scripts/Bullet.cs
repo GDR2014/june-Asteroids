@@ -29,8 +29,10 @@ public class Bullet : MonoBehaviour {
     }
 
     void OnCollisionEnter2D( Collision2D collision ) {
+        var other = collision.gameObject;
+        if( other.tag == "Player" ) return;
         this.Recycle();
-        Debug.Log( "Bullet hit: " + collision.gameObject );
+        Debug.Log( "Bullet hit: " + other );
     }
 
 }
