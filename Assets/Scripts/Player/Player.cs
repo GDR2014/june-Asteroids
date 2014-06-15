@@ -10,7 +10,7 @@ public class Player : MonoBehaviour {
     private Rigidbody2D rb;
     private Wrapper wrapper;
 
-    void Awake() {
+    void Start() {
         rb = GetComponent<Rigidbody2D>();
         wrapper = GetComponent<Wrapper>();
     }
@@ -24,6 +24,7 @@ public class Player : MonoBehaviour {
 
     void FixedUpdate() {
         var throttle = Input.GetAxis("Vertical") * thrusterForce;
+        if( throttle < 0 ) throttle = 0; // Can't move backwards
         rb.AddRelativeForce(wrapper.Ghosts[0].transform.up * throttle);
     }
 }
