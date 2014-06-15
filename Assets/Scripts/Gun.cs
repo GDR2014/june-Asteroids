@@ -4,7 +4,7 @@ using UnityEngine;
 public class Gun : MonoBehaviour {
 
     public Transform bulletSpawnpoint;
-    public Transform bulletPrefab;
+    public Bullet bulletPrefab;
 
     public float cooldown = .2f;
     private bool canFire = true;

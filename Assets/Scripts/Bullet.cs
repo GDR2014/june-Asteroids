@@ -16,7 +16,7 @@ public class Bullet : MonoBehaviour {
         width = height * cam.aspect;
     }
 
-    void Start() {
+    void OnEnable() {
         rb.velocity = transform.up * bulletSpeed;
     }
 
