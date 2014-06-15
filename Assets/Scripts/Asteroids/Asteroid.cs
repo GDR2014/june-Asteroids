@@ -41,11 +41,11 @@ public class Asteroid : MonoBehaviour {
     }
 
     void updateMass() {
-        rb.mass = baseMass * RemainingSplits;
+        rb.mass = baseMass * (RemainingSplits + 1);
     }
 
     void updateScale() {
-        scale = baseScale * RemainingSplits;
+        scale = baseScale * (RemainingSplits + 1);
     }
 
     void Hurt() {
@@ -57,7 +57,7 @@ public class Asteroid : MonoBehaviour {
         var fragments = new[] { PrefabManager.Instance.Wrapsteroid.Spawn(pos), PrefabManager.Instance.Wrapsteroid.Spawn(pos) };
         foreach( var fragment in fragments ) {
             fragment.scale = scale / fragments.Length;
-            fragment._remainingSplits = _remainingSplits - 1;
+            fragment.RemainingSplits = RemainingSplits - 1;
         }
         Vector2 fragPos = fragments[0].transform.position;
         fragPos += Random.insideUnitCircle * splitNudgePower * .001f;
@@ -65,7 +65,7 @@ public class Asteroid : MonoBehaviour {
     }
 
     void Die() {
-        if( _remainingSplits > 0 ) Split();
+        if( RemainingSplits > 0 ) Split();
         this.Recycle();
         WaveManager.Instance.CheckForAsteroids();
     }
