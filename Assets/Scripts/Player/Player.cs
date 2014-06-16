@@ -13,12 +13,18 @@ public class Player : MonoBehaviour {
     public float respawnDelay = 1f;
     public float respawnInvincibilityTime = 1.5f;
 
+    public AudioClip deathSound;
+    private AudioSource thrusterSource;
+    private float originalThrusterPitch;
+
     private Rigidbody2D rb;
     private Wrapper wrapper;
 
     void Start() {
         rb = GetComponent<Rigidbody2D>();
         wrapper = GetComponent<Wrapper>();
+        thrusterSource = GetComponent<AudioSource>();
+        originalThrusterPitch = thrusterSource.pitch;
     }
 
     void Update () {
@@ -32,6 +38,8 @@ public class Player : MonoBehaviour {
         var throttle = Input.GetAxis("Vertical") * thrusterForce;
         if( throttle < 0 ) throttle = 0; // Can't move backwards
         rb.AddRelativeForce(wrapper.Ghosts[0].transform.up * throttle);
+        thrusterSource.enabled = throttle > 0;
+        thrusterSource.pitch = originalThrusterPitch + throttle * .1f;
     }
 
     void OnCollisionEnter2D( Collision2D collision ) {
@@ -45,6 +53,7 @@ public class Player : MonoBehaviour {
     }
 
     private void Die() {
+        AudioSource.PlayClipAtPoint(deathSound, transform.position);
         gameObject.SetActive( false ); // Boom!
     }
 

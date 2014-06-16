@@ -10,6 +10,8 @@ public class Asteroid : MonoBehaviour {
     public Vector2 baseScale = Vector2.one / 3;
 
     public float splitNudgePower = 1;
+
+    public AudioClip hurtSound, splitSound, deathSound;
     
     private int _health;
     
@@ -59,6 +61,7 @@ public class Asteroid : MonoBehaviour {
 
     void Hurt() {
         _health -= 1;
+        AudioSource.PlayClipAtPoint(hurtSound, transform.position);
     }
 
     void Split() {
@@ -68,6 +71,7 @@ public class Asteroid : MonoBehaviour {
             fragment.scale = scale / fragments.Length;
             fragment.RemainingSplits = RemainingSplits - 1;
         }
+        AudioSource.PlayClipAtPoint(splitSound, transform.position);
         Vector2 fragPos = fragments[0].transform.position;
         fragPos += Random.insideUnitCircle * splitNudgePower * .001f;
         fragments[0].transform.position = fragPos;
@@ -76,6 +80,7 @@ public class Asteroid : MonoBehaviour {
     void Die() {
         GameManager.Instance.score += ScoreAmount;
         if( RemainingSplits > 0 ) Split();
+        else AudioSource.PlayClipAtPoint(deathSound, transform.position); // Only play death sound if we're NOT splitting
         this.Recycle();
         WaveManager.Instance.CheckForAsteroids();
     }
