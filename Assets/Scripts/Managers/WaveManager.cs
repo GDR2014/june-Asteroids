@@ -35,14 +35,15 @@ public class WaveManager : MonoBehaviour {
     }
 
     void SpawnAsteroids() {
-        foreach( var spawnPoint in GetAsteroidSpawnPoints() ) {
+        var asteroidCount = ( wave + 1 ) / 2;
+        foreach( var spawnPoint in GetAsteroidSpawnPoints(asteroidCount)) {
             var asteroid = PrefabManager.Instance.Wrapsteroid.Spawn( spawnPoint );
-            asteroid.RemainingSplits = asteroid.baseSplits;
+            asteroid.RemainingSplits = asteroid.baseSplits + (wave / 2);
         }
     }
 
-    IEnumerable<Vector2> GetAsteroidSpawnPoints() {
-        Vector2[] points = new Vector2[wave];
+    IEnumerable<Vector2> GetAsteroidSpawnPoints(int count) {
+        Vector2[] points = new Vector2[count];
         var cam = Camera.main;
         var height = cam.orthographicSize;
         var width = cam.aspect * height;
