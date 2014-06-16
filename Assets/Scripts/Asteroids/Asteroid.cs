@@ -3,19 +3,24 @@
 [RequireComponent(typeof(Wrapper))]
 public class Asteroid : MonoBehaviour {
 
+    public int baseScore = 2;
     public int baseSplits = 2;
     public int baseHealth = 1;
     public float baseMass = 1f;
     public Vector2 baseScale = Vector2.one / 3;
 
-    public int health;
-    public int _remainingSplits;
     public float splitNudgePower = 1;
+    
+    private int _health;
+    
+    public int ScoreAmount { get; private set; }
 
+    private int _remainingSplits;
     public int RemainingSplits {
         get { return _remainingSplits; }
         set {
             _remainingSplits = value;
+            updateScore();
             updateHealth();
             updateMass();
             updateScale();
@@ -36,8 +41,12 @@ public class Asteroid : MonoBehaviour {
         RemainingSplits = baseSplits;
     }
 
+    private void updateScore() {
+        ScoreAmount = (int) Mathf.Pow( baseScore, RemainingSplits );
+    }
+
     void updateHealth() {
-        health = RemainingSplits * baseHealth + 1;
+        _health = RemainingSplits * baseHealth + 1;
     }
 
     void updateMass() {
@@ -49,7 +58,7 @@ public class Asteroid : MonoBehaviour {
     }
 
     void Hurt() {
-        health -= 1;
+        _health -= 1;
     }
 
     void Split() {
@@ -65,6 +74,7 @@ public class Asteroid : MonoBehaviour {
     }
 
     void Die() {
+        GameManager.Instance.score += ScoreAmount;
         if( RemainingSplits > 0 ) Split();
         this.Recycle();
         WaveManager.Instance.CheckForAsteroids();
@@ -74,6 +84,6 @@ public class Asteroid : MonoBehaviour {
         var other = collision.gameObject;
         if( other.layer != 9 ) return; // Layer 9 is player bullets
         Hurt();
-        if( health <= 0 ) Die();
+        if( _health <= 0 ) Die();
     }
 }
