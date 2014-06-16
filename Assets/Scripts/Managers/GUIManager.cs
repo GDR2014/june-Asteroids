@@ -6,6 +6,7 @@ public class GUIManager : MonoBehaviour {
     public GUIStyle remainingLivesTextStyle;
     public GUIStyle scoreTextStyle;
     public GUIStyle highscoreTextStyle;
+    public GUIStyle newHighscoreTextStyle;
 
     public Texture livesRemainingIcon;
 
@@ -50,7 +51,13 @@ public class GUIManager : MonoBehaviour {
 
     private void DrawGameOverScreen() {
         if( !gameManager.isGameOver ) return;
-        GUI.Label( new Rect( w, h - 100, 0, 0 ), "Game over!", gameOverTextStyle );
+        GUI.Label( new Rect( w, h - 175, 0, 0 ), "Game over!", gameOverTextStyle );
+        // If new highscore
+        if( gameManager.score > gameManager.oldHighscore ) {
+            GUI.Label( new Rect(w, h - 60, 0, 0), "New highscore! :D", newHighscoreTextStyle);
+        }
+        GUI.Label(new Rect(w, h-40, 0, 0), "You scored " + gameManager.score + " points!", scoreTextStyle);
+        // Reset button
         if( GUI.Button( new Rect( w - 40, h + 25, 80, 30 ), "Restart" ) ) {
             Application.LoadLevel( 0 );
         }
