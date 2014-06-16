@@ -23,7 +23,6 @@ public class WaveManager : MonoBehaviour {
 
     public void CheckForAsteroids() {
         bool asteroidsLeft = FindObjectOfType<Asteroid>() != null;
-        Debug.Log( "Asteroids left: " + asteroidsLeft );
         if( asteroidsLeft ) return;
         StartCoroutine( LoadNextWave() );
     }

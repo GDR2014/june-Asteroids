@@ -8,6 +8,10 @@ public class Gun : MonoBehaviour {
     public float cooldown = .2f;
     private bool canFire = true;
 
+    void OnEnable() {
+        canFire = true;
+    }
+
     void Update() {
         if( !canFire || !Input.GetButton( "Fire1" ) ) return;
         Fire();
@@ -15,7 +19,7 @@ public class Gun : MonoBehaviour {
 
     private void Fire() {
         canFire = false;
-        var bullet = PrefabManager.Instance.Bullet.Spawn( bulletSpawnpoint.position, transform.localRotation);
+        PrefabManager.Instance.Bullet.Spawn( bulletSpawnpoint.position, transform.localRotation);
         StartCoroutine( cooldownRoutine() );
     }
 
