@@ -3,7 +3,9 @@
 public class GUIManager : MonoBehaviour {
 
     public GUIStyle gameOverTextStyle;
-    public GUIStyle livesRemainingTextStyle;
+    public GUIStyle remainingLivesTextStyle;
+    public GUIStyle scoreTextStyle;
+    public GUIStyle highscoreTextStyle;
 
     public Texture livesRemainingIcon;
 
@@ -29,9 +31,21 @@ public class GUIManager : MonoBehaviour {
 
     void OnGUI() {
         DrawGameOverScreen();
+        DrawLivesRemaining();
+        DrawScore();
+    }
+
+    private void DrawScore() {
         if( gameManager.isGameOver ) return;
-        GUI.DrawTexture( new Rect(20, 20, 40, 40), livesRemainingIcon, ScaleMode.ScaleToFit  );
-        GUI.Label(new Rect(65, 20, 0, 0), "x " + player.remainingLives, livesRemainingTextStyle );
+        GUI.Label( new Rect( w, 20, 0, 0 ), "Score: " + gameManager.score, scoreTextStyle );
+        if( gameManager.score > gameManager.oldHighscore ) highscoreTextStyle.normal.textColor = Color.yellow;
+        GUI.Label( new Rect( w * 2 - 20, 20, 0, 0 ), "Highscore: " + gameManager.highscore, highscoreTextStyle );
+    }
+
+    private void DrawLivesRemaining() {
+        if( gameManager.isGameOver ) return;
+        GUI.DrawTexture( new Rect( 20, 20, 40, 40 ), livesRemainingIcon, ScaleMode.ScaleToFit );
+        GUI.Label( new Rect( 70, 20, 0, 0 ), "x " + player.remainingLives, remainingLivesTextStyle );
     }
 
     private void DrawGameOverScreen() {
