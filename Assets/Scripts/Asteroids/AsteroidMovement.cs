@@ -39,6 +39,7 @@ public class AsteroidMovement : MonoBehaviour {
 
     IEnumerator rotationRoutine() {
         while( true ) {
+            if( ghosts == null ) yield return null;
             foreach( var ghost in ghosts ) {
                 ghost.Rotate( new Vector3(0,0,rotationSpeed) );
             }

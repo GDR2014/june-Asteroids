@@ -54,9 +54,11 @@ public class GUIManager : MonoBehaviour {
         GUI.Label( new Rect( w, h - 175, 0, 0 ), "Game over!", gameOverTextStyle );
         // If new highscore
         if( gameManager.score > gameManager.oldHighscore ) {
-            GUI.Label( new Rect(w, h - 60, 0, 0), "New highscore! :D", newHighscoreTextStyle);
+            GUI.Label( new Rect( w, h - 110, 0, 0 ), "N e w   h i g h s c o r e !   :D" , newHighscoreTextStyle );
+        } else {
+            GUI.Label(new Rect(w, h-40, 0, 0), "Personal best: " + gameManager.highscore, scoreTextStyle);
         }
-        GUI.Label(new Rect(w, h-40, 0, 0), "You scored " + gameManager.score + " points!", scoreTextStyle);
+        GUI.Label(new Rect(w, h-90, 0, 0), "You scored " + gameManager.score + " points!", scoreTextStyle);
         // Reset button
         if( GUI.Button( new Rect( w - 40, h + 25, 80, 30 ), "Restart" ) ) {
             Application.LoadLevel( 0 );
