@@ -5,6 +5,9 @@ public class Gun : MonoBehaviour {
 
     public Transform bulletSpawnpoint;
 
+    public AudioClip fireSound;
+    public float fireVolume = .03f;
+
     public float cooldown = .2f;
     private bool canFire = true;
 
@@ -19,6 +22,7 @@ public class Gun : MonoBehaviour {
 
     private void Fire() {
         canFire = false;
+        AudioSource.PlayClipAtPoint(fireSound, transform.position, fireVolume);
         PrefabManager.Instance.Bullet.Spawn( bulletSpawnpoint.position, transform.localRotation);
         StartCoroutine( cooldownRoutine() );
     }
