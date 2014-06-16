@@ -10,12 +10,15 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    public bool isGameOver = false;
+
     void Awake() {
         // Ignore collisions between player and player bullets.
         Physics2D.IgnoreLayerCollision( 8, 9 );
     }
 
     public void GameOver() {
-        Debug.Log("Game over! :(");
+        isGameOver = true;
     }
+
 }

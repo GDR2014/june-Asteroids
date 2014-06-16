@@ -19,7 +19,7 @@ public class Gun : MonoBehaviour {
 
     private void Fire() {
         canFire = false;
-        var bullet = PrefabManager.Instance.Bullet.Spawn( bulletSpawnpoint.position, transform.localRotation);
+        PrefabManager.Instance.Bullet.Spawn( bulletSpawnpoint.position, transform.localRotation);
         StartCoroutine( cooldownRoutine() );
     }
 

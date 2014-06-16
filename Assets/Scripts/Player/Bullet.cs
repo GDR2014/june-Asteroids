@@ -30,7 +30,6 @@ public class Bullet : MonoBehaviour {
     }
 
     void OnCollisionEnter2D( Collision2D collision ) {
-        var other = collision.gameObject;
         StartCoroutine( Remove() );
     }
 
